@@ -1,18 +1,16 @@
-// import * as anonymous from "https://deno.land/x/denops_std@v3.2.0/anonymous/mod.ts";
-// import * as fn from "https://deno.land/x/denops_std@v3.2.0/function/mod.ts";
 import type {
-  ActionFlags,
   Actions,
   DduOptions,
 } from "https://deno.land/x/ddu_vim@v1.3.0/types.ts";
-import { BaseKind } from "https://deno.land/x/ddu_vim@v1.3.0/types.ts";
-
-type Params = Record<never, never>;
+import {
+  ActionFlags,
+  BaseKind,
+} from "https://deno.land/x/ddu_vim@v1.3.0/types.ts";
 
 export interface ActionData {
   name: string;
-  options?: Pick<DduOptions, "sources">;
 }
+type Params = Record<never, never>;
 
 export class Kind extends BaseKind<Params> {
   actions: Actions<Params> = {
@@ -24,9 +22,9 @@ export class Kind extends BaseKind<Params> {
             name: action.name,
           };
         }),
-        // ...args.items.map((i) => (i?.action as ActionData).options ?? {}),
       };
-      await args.denops.call("ddu#start", options);
+      const actionParams = args.actionParams as Pick<DduOptions, "sources">;
+      await args.denops.call("ddu#start", { ...options, ...actionParams });
       return Promise.resolve(ActionFlags.None);
     },
   };

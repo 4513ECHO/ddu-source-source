@@ -1,4 +1,3 @@
-// import * as fn from "https://deno.land/x/denops_std@v3.2.0/function/mod.ts";
 import * as path from "https://deno.land/std@0.131.0/path/mod.ts";
 import type { GatherArguments } from "https://deno.land/x/ddu_vim@v1.3.0/base/source.ts";
 import type {
@@ -13,9 +12,7 @@ import {
 } from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 import { ActionData } from "../@ddu-kinds/source.ts";
 
-interface Params {
-  options?: Pick<DduOptions, "sources">;
-}
+type Params = Record<never, never>;
 type Aliases = Record<DduExtType, Record<string, string>>;
 
 export class Source extends BaseSource<Params, ActionData> {
@@ -43,7 +40,6 @@ export class Source extends BaseSource<Params, ActionData> {
               word: i,
               action: {
                 name: i,
-                options: args.sourceParams.options,
               },
             };
           }),
@@ -54,8 +50,6 @@ export class Source extends BaseSource<Params, ActionData> {
   }
 
   params(): Params {
-    return {
-      options: {},
-    };
+    return {};
   }
 }

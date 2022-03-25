@@ -1,0 +1,67 @@
+*ddu-source-source.txt*			ddu source source for ddu.vim
+
+Author: Hibiki <4513echo@gmail.com>
+License: MIT License
+URL: https://github.com/4513ECHO/ddu-source-source
+Last change: 2022 Mar 25
+
+==============================================================================
+CONTENTS				*ddu-source-source-contents*
+
+Introduction				|ddu-source-source-introdution|
+Install					|ddu-source-source-install|
+Examples				|ddu-source-source-examples|
+Params					|ddu-source-source-params|
+Actions					|ddu-kind-source-actions|
+About					|ddu-source-source-about|
+
+==============================================================================
+INTRODUCTION				*ddu-source-source-introdution*
+
+This source collects all of installed ddu sources.
+
+==============================================================================
+INSTALL					*ddu-source-source-install*
+
+Please install both "|ddu|.vim" and "|denops.vim|".
+
+https://github.com/Shougo/ddu.vim
+https://github.com/vim-denops/denops.vim
+
+==============================================================================
+EXAMPLES				*ddu-source-source-examples*
+
+>
+	" Set kind default action.
+	call ddu#custom#patch_global({
+	      \ 'kindOptions': {
+	      \   'source': {
+	      \     'defaultAction': 'execute',
+	      \   },
+	      \ },
+	      \ })
+	
+	" Use source source.
+	call ddu#start({'sources': [{'name': 'source'}]})
+<
+
+==============================================================================
+PARAMS					*ddu-source-source-params*
+
+==============================================================================
+ACTIONS					*ddu-kind-source-actions*
+
+execute
+	Execute the source. Action params are same as |ddu-options|, please
+	see also it.
+
+==============================================================================
+ABOUT					*ddu-source-source-about*
+
+|ddu-source-source| is developed by Hibiki(4513ECHO) and licensed under
+the MIT License. Visit the project page for the latest version:
+
+	https://github.com/4513ECHO/ddu-source-source
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:
