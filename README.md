@@ -4,6 +4,8 @@ ddu source source for ddu.vim
 
 This source collects all of installed ddu sources.
 
+Please read [help](doc/ddu-source-source.txt) for details.
+
 ## Requirements
 
 - [denops.vim](https://github.com/vim-denops/denops.vim)
