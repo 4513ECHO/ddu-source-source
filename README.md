@@ -9,7 +9,7 @@ Please read [help](doc/ddu-source-source.txt) for details.
 ## Requirements
 
 - [denops.vim](https://github.com/vim-denops/denops.vim)
-- [ddu.vim](https://github.com/Shoguo/ddu.vim)
+- [ddu.vim](https://github.com/Shougo/ddu.vim)
 
 ## Configuration
 
