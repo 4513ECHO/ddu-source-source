@@ -1,10 +1,10 @@
-import * as path from "https://deno.land/std@0.135.0/path/mod.ts";
-import type { GatherArguments } from "https://deno.land/x/ddu_vim@v1.5.0/base/source.ts";
+import * as path from "https://deno.land/std@0.148.0/path/mod.ts";
+import type { GatherArguments } from "https://deno.land/x/ddu_vim@v1.8.7/base/source.ts";
 import type {
   DduExtType,
   Item,
-} from "https://deno.land/x/ddu_vim@v1.5.0/types.ts";
-import { BaseSource } from "https://deno.land/x/ddu_vim@v1.5.0/types.ts";
+} from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
+import { BaseSource } from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
 import {
   ensureArray,
   ensureLike,
