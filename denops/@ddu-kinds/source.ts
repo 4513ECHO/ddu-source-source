@@ -1,37 +1,29 @@
-import type {
-  Actions,
-  DduOptions,
-} from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
+import type { Actions } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 import {
   ActionFlags,
   BaseKind,
-} from "https://deno.land/x/ddu_vim@v1.8.7/types.ts";
+} from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 
 export interface ActionData {
   name: string;
 }
 type Params = Record<never, never>;
-type ActionParams = Record<string, unknown>;
 
 export class Kind extends BaseKind<Params> {
-  actions: Actions<Params> = {
+  override actions: Actions<Params> = {
     async execute(args) {
-      const actionParams = args.actionParams as ActionParams;
-      const options: DduOptions = {
-        sources: args.items.map((i) => {
-          const action = i?.action as ActionData;
-          return {
-            name: action.name,
-            params: actionParams,
-          };
-        }),
+      const options = {
+        sources: args.items.map((item) => ({
+          name: (item?.action as ActionData).name,
+          params: args.actionParams,
+        })),
       };
       await args.denops.call("ddu#start", options);
       return Promise.resolve(ActionFlags.None);
     },
   };
 
-  params(): Params {
+  override params(): Params {
     return {};
   }
 }

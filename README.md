@@ -15,11 +15,9 @@ Please read [help](doc/ddu-source-source.txt) for details.
 
 ```vim
 " Set kind default action.
-call ddu#custom#patch_global({
-      \ 'kindOptions': {
-      \   'source': {
-      \     'defaultAction': 'execute',
-      \   },
+call ddu#custom#patch_global('kindOptions', {
+      \ 'source': {
+      \   'defaultAction': 'execute',
       \ },
       \ })
 

@@ -3,7 +3,7 @@
 Author: Hibiki <4513echo@gmail.com>
 License: MIT License
 URL: https://github.com/4513ECHO/ddu-source-source
-Last change: 2022 May 04
+Last change: 2023 Feb 19
 
 ==============================================================================
 CONTENTS				*ddu-source-source-contents*
@@ -33,14 +33,12 @@ EXAMPLES				*ddu-source-source-examples*
 
 >
 	" Set kind default action.
-	call ddu#custom#patch_global({
-	      \ 'kindOptions': {
-	      \   'source': {
-	      \     'defaultAction': 'execute',
-	      \   },
+	call ddu#custom#patch_global('kindOptions', {
+	      \ 'source': {
+	      \   'defaultAction': 'execute',
 	      \ },
 	      \ })
-	
+
 	" Use source source.
 	call ddu#start({'sources': [{'name': 'source'}]})
 <
@@ -48,9 +46,12 @@ EXAMPLES				*ddu-source-source-examples*
 ==============================================================================
 PARAMS					*ddu-source-source-params*
 
+	UNDEFINED NOW
+
 ==============================================================================
 ACTIONS					*ddu-kind-source-actions*
 
+					*ddu-kind-source-action-execute*
 execute
 	Execute the source. Action params are passed to the source directly as
 	|ddu-option-sourceParams|.
