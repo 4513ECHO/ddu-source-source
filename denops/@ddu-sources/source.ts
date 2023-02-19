@@ -3,10 +3,7 @@ import type {
   GatherArguments,
   OnInitArguments,
 } from "https://deno.land/x/ddu_vim@v2.3.0/base/source.ts";
-import type {
-  DduExtType,
-  Item,
-} from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
+import type { Item } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 import { BaseSource } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 import {
   ensureArray,
@@ -15,7 +12,10 @@ import {
 import { ActionData } from "../@ddu-kinds/source.ts";
 
 type Params = Record<never, never>;
-type Aliases = Record<DduExtType, Record<string, string>>;
+type Aliases = Record<
+  "ui" | "source" | "filter" | "kind",
+  Record<string, string>
+>;
 
 export class Source extends BaseSource<Params, ActionData> {
   override kind = "source";
@@ -28,7 +28,7 @@ export class Source extends BaseSource<Params, ActionData> {
       ),
     );
     const aliases = ensureLike<Aliases, unknown>(
-      { ui: {}, source: {}, filter: {}, kind: {}, column: {} },
+      { ui: {}, source: {}, filter: {}, kind: {} },
       await args.denops.call("ddu#custom#get_aliases"),
     );
     this.#items = sourceFiles
