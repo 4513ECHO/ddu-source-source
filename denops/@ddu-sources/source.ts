@@ -7,15 +7,11 @@ import type { Item } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 import { BaseSource } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
 import {
   ensureArray,
-  ensureLike,
+  ensureObject,
 } from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 import { ActionData } from "../@ddu-kinds/source.ts";
 
 type Params = Record<never, never>;
-type Aliases = Record<
-  "ui" | "source" | "filter" | "kind",
-  Record<string, string>
->;
 
 export class Source extends BaseSource<Params, ActionData> {
   override kind = "source";
@@ -27,8 +23,7 @@ export class Source extends BaseSource<Params, ActionData> {
         "globpath(&runtimepath, 'denops/@ddu-sources/*.ts', 1, 1)",
       ),
     );
-    const aliases = ensureLike<Aliases, unknown>(
-      { ui: {}, source: {}, filter: {}, kind: {} },
+    const aliases = ensureObject<Record<string, unknown>>(
       await args.denops.call("ddu#custom#get_aliases"),
     );
     this.#items = sourceFiles
