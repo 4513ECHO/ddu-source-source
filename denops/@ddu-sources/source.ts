@@ -1,15 +1,12 @@
-import * as path from "https://deno.land/std@0.177.0/path/mod.ts";
-import type {
-  GatherArguments,
-  OnInitArguments,
-} from "https://deno.land/x/ddu_vim@v2.3.0/base/source.ts";
-import type { Item } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
-import { BaseSource } from "https://deno.land/x/ddu_vim@v2.3.0/types.ts";
+import type { OnInitArguments } from "https://deno.land/x/ddu_vim@v2.8.4/base/source.ts";
+import type { Item } from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
+import { BaseSource } from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
+import { basename } from "https://deno.land/std@0.187.0/path/mod.ts";
 import {
   ensureArray,
   ensureObject,
-} from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
-import { ActionData } from "../@ddu-kinds/source.ts";
+} from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
+import type { ActionData } from "../@ddu-kinds/source.ts";
 
 type Params = Record<never, never>;
 
@@ -27,7 +24,7 @@ export class Source extends BaseSource<Params, ActionData> {
       await args.denops.call("ddu#custom#get_aliases"),
     );
     this.#items = sourceFiles
-      .map((file) => path.basename(file, ".ts"))
+      .map((file) => basename(file, ".ts"))
       .concat(Object.keys(aliases.source))
       .map((word) => ({
         word,
@@ -35,9 +32,7 @@ export class Source extends BaseSource<Params, ActionData> {
       }));
   }
 
-  override gather(
-    _args: GatherArguments<Params>,
-  ): ReadableStream<Item<ActionData>[]> {
+  override gather(_args: unknown): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       start: (controller) => {
         controller.enqueue(this.#items);
