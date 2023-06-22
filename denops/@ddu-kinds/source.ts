@@ -1,8 +1,8 @@
-import type { Actions } from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
+import type { Actions } from "https://deno.land/x/ddu_vim@v3.2.6/types.ts";
 import {
   ActionFlags,
   BaseKind,
-} from "https://deno.land/x/ddu_vim@v2.8.4/types.ts";
+} from "https://deno.land/x/ddu_vim@v3.2.6/types.ts";
 
 export interface ActionData {
   name: string;
