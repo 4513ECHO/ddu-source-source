@@ -1,27 +1,27 @@
-*ddu-source-source.txt*			ddu source source for ddu.vim
+*ddu-source-source.txt*                          ddu source source for ddu.vim
 
 Author: Hibiki <mail@4513echo.dev>
 License: MIT License
 URL: https://github.com/4513ECHO/ddu-source-source
-Last change: 2023 May 16
+Last change: 2023 Aug 23
 
 ==============================================================================
-CONTENTS				*ddu-source-source-contents*
+CONTENTS                                          *ddu-source-source-contents*
 
-Introduction				|ddu-source-source-introdution|
-Install					|ddu-source-source-install|
-Examples				|ddu-source-source-examples|
-Params					|ddu-source-source-params|
-Actions					|ddu-kind-source-actions|
-About					|ddu-source-source-about|
-
-==============================================================================
-INTRODUCTION				*ddu-source-source-introdution*
-
-This source collects all of installed ddu sources.
+Introduction					|ddu-source-source-introdution|
+Install						|ddu-source-source-install|
+Examples					|ddu-source-source-examples|
+Params						|ddu-source-source-params|
+Actions						|ddu-kind-source-actions|
+About						|ddu-source-source-about|
 
 ==============================================================================
-INSTALL					*ddu-source-source-install*
+INTRODUCTION                                   *ddu-source-source-introdution*
+
+*ddu-source-source* is *ddu-sources* collecting installed ddu sources.
+
+==============================================================================
+INSTALL                                            *ddu-source-source-install*
 
 Please install both "|ddu|.vim" and "|denops.vim|".
 
@@ -29,7 +29,7 @@ https://github.com/Shougo/ddu.vim
 https://github.com/vim-denops/denops.vim
 
 ==============================================================================
-EXAMPLES				*ddu-source-source-examples*
+EXAMPLES                                          *ddu-source-source-examples*
 
 >
 	" Set kind default action.
@@ -44,23 +44,23 @@ EXAMPLES				*ddu-source-source-examples*
 <
 
 ==============================================================================
-PARAMS					*ddu-source-source-params*
+PARAMS                                              *ddu-source-source-params*
 
 	UNDEFINED NOW
 
 ==============================================================================
-ACTIONS					*ddu-kind-source-actions*
+ACTIONS                                              *ddu-kind-source-actions*
 
-					*ddu-kind-source-action-execute*
+                                              *ddu-kind-source-action-execute*
 execute
 	Execute the source. Action params are passed to the source directly as
 	|ddu-option-sourceParams|.
 
 ==============================================================================
-ABOUT					*ddu-source-source-about*
+ABOUT                                                *ddu-source-source-about*
 
-|ddu-source-source| is developed by Hibiki(4513ECHO) and licensed under
-the MIT License. Visit the project page for the latest version:
+|ddu-source-source| is developed by Hibiki(4513ECHO) and licensed under the
+MIT License. Visit the project page for the latest version:
 
 	https://github.com/4513ECHO/ddu-source-source
 

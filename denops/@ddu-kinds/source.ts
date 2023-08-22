@@ -1,13 +1,13 @@
-import type { Actions } from "https://deno.land/x/ddu_vim@v3.4.3/types.ts";
 import {
   ActionFlags,
+  type Actions,
   BaseKind,
-} from "https://deno.land/x/ddu_vim@v3.4.3/types.ts";
+} from "https://deno.land/x/ddu_vim@v3.5.1/types.ts";
 
-export interface ActionData {
+export type ActionData = {
   name: string;
-}
-type Params = Record<never, never>;
+};
+type Params = Record<PropertyKey, never>;
 
 export class Kind extends BaseKind<Params> {
   override actions: Actions<Params> = {
@@ -18,7 +18,7 @@ export class Kind extends BaseKind<Params> {
           params: args.actionParams,
         })),
       };
-      await args.denops.call("ddu#start", options);
+      await args.denops.dispatcher.start(options);
       return Promise.resolve(ActionFlags.None);
     },
   };
