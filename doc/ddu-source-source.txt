@@ -18,7 +18,7 @@ About						|ddu-source-source-about|
 ==============================================================================
 INTRODUCTION                                   *ddu-source-source-introdution*
 
-*ddu-source-source* is *ddu-sources* collecting installed ddu sources.
+*ddu-source-source* is |ddu-sources| collecting installed ddu sources.
 
 ==============================================================================
 INSTALL                                            *ddu-source-source-install*
