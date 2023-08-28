@@ -1,17 +1,17 @@
 import {
   BaseSource,
   type OnInitArguments,
-} from "https://deno.land/x/ddu_vim@v3.5.1/base/source.ts";
-import type { Item } from "https://deno.land/x/ddu_vim@v3.5.1/types.ts";
-import { basename } from "https://deno.land/std@0.199.0/path/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+} from "https://deno.land/x/ddu_vim@v3.6.0/base/source.ts";
+import type { Item } from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
+import { basename } from "https://deno.land/std@0.200.0/path/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.5.1/mod.ts";
 import type { ActionData } from "../@ddu-kinds/source.ts";
 
 type Params = Record<PropertyKey, never>;
 
 export class Source extends BaseSource<Params, ActionData> {
   override kind = "source";
-  #stream: ReadableStream<Item<ActionData>[]> = new ReadableStream();
+  #items: Item<ActionData>[] = [];
 
   override async onInit(args: OnInitArguments<Params>): Promise<void> {
     const sourceFiles = ensure(
@@ -24,16 +24,15 @@ export class Source extends BaseSource<Params, ActionData> {
       .map((file) => basename(file, ".ts"))
       .concat(args.loader.getSourceNames())
       .concat(args.loader.getAliasNames("source"));
-    const items = [...new Set(sources)]
+    this.#items = [...new Set(sources)]
       .map((word) => ({
         word,
         action: { name: word },
       }));
-    this.#stream = ReadableStream.from([items]);
   }
 
   override gather(_args: unknown): ReadableStream<Item<ActionData>[]> {
-    return this.#stream;
+    return ReadableStream.from([this.#items]);
   }
 
   override params(): Params {

@@ -2,7 +2,7 @@ import {
   ActionFlags,
   type Actions,
   BaseKind,
-} from "https://deno.land/x/ddu_vim@v3.5.1/types.ts";
+} from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
 
 export type ActionData = {
   name: string;
