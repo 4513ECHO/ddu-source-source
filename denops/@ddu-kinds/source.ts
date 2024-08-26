@@ -1,8 +1,5 @@
-import {
-  ActionFlags,
-  type Actions,
-  BaseKind,
-} from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
+import { BaseKind } from "jsr:@shougo/ddu-vim@^5.0.0/kind";
+import { ActionFlags, type Actions } from "jsr:@shougo/ddu-vim@^5.0.0/types";
 
 export type ActionData = {
   name: string;
@@ -10,7 +7,7 @@ export type ActionData = {
 type Params = Record<PropertyKey, never>;
 
 export class Kind extends BaseKind<Params> {
-  override actions: Actions<Params> = {
+  actions: Actions<Params> = {
     async execute(args) {
       const options = {
         sources: args.items.map((item) => ({
@@ -19,11 +16,11 @@ export class Kind extends BaseKind<Params> {
         })),
       };
       await args.denops.dispatcher.start(options);
-      return Promise.resolve(ActionFlags.None);
+      return ActionFlags.None;
     },
   };
 
-  override params(): Params {
+  params(): Params {
     return {};
   }
 }
