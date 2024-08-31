@@ -1,12 +1,9 @@
 import {
   BaseSource,
-  type GatherArguments,
   type OnInitArguments,
-} from "jsr:@shougo/ddu-vim@^5.0.0/source";
-import type { Item } from "jsr:@shougo/ddu-vim@^5.0.0/types";
-import { basename } from "jsr:@std/path@^1.0.2/basename";
-import { ensure } from "jsr:@core/unknownutil@^4.3.0/ensure";
-import { is } from "jsr:@core/unknownutil@^4.3.0/is";
+} from "jsr:@shougo/ddu-vim@^6.0.0/source";
+import type { Item } from "jsr:@shougo/ddu-vim@^6.0.0/types";
+import { basename } from "jsr:@std/path@^1.0.3/basename";
 import type { ActionData } from "../@ddu-kinds/source.ts";
 
 type Params = Record<PropertyKey, never>;
@@ -16,12 +13,9 @@ export class Source extends BaseSource<Params, ActionData> {
   #items: Item<ActionData>[] = [];
 
   async onInit(args: OnInitArguments<Params>): Promise<void> {
-    const sourceFiles = ensure(
-      await args.denops.eval(
-        "globpath(&runtimepath, 'denops/@ddu-sources/*.ts', 1, 1)",
-      ),
-      is.ArrayOf(is.String),
-    );
+    const sourceFiles = await args.denops.eval(
+      "globpath(&runtimepath, 'denops/@ddu-sources/*.ts', v:true, v:true)",
+    ) as string[];
     const sources = [
       sourceFiles.map((file) => basename(file, ".ts")),
       await args.denops.dispatcher.getSourceNames() as string[],
@@ -34,7 +28,7 @@ export class Source extends BaseSource<Params, ActionData> {
       }));
   }
 
-  gather(_args: GatherArguments<Params>): ReadableStream<Item<ActionData>[]> {
+  gather(): ReadableStream<Item<ActionData>[]> {
     return ReadableStream.from([this.#items]);
   }
 
