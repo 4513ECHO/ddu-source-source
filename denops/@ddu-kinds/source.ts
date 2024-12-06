@@ -1,5 +1,5 @@
-import { BaseKind } from "jsr:@shougo/ddu-vim@^6.2.0/kind";
-import { ActionFlags, type Actions } from "jsr:@shougo/ddu-vim@^6.2.0/types";
+import { BaseKind } from "jsr:@shougo/ddu-vim@^9.0.1/kind";
+import { ActionFlags, type Actions } from "jsr:@shougo/ddu-vim@^9.0.1/types";
 
 export type ActionData = {
   name: string;
