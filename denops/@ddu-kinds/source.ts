@@ -9,13 +9,12 @@ type Params = Record<PropertyKey, never>;
 export class Kind extends BaseKind<Params> {
   override actions: Actions<Params> = {
     async execute(args) {
-      const options = {
-        sources: args.items.map((item) => ({
-          name: (item?.action as ActionData).name,
-          params: args.actionParams,
-        })),
-      };
-      await args.denops.dispatcher.start(options);
+      for (const item of args.items) {
+        const sourceName = (item?.action as ActionData).name;
+        await args.denops.dispatcher.start({
+          name: sourceName,
+        });
+      }
       return ActionFlags.None;
     },
   };
