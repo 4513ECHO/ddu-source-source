@@ -10,10 +10,13 @@ export class Kind extends BaseKind<Params> {
   override actions: Actions<Params> = {
     async execute(args) {
       for (const item of args.items) {
-        const sourceName = (item?.action as ActionData).name;
-        await args.denops.dispatcher.start({
-          name: sourceName,
-        });
+        const options = {
+          sources: args.items.map((item) => ({
+            name: (item?.action as ActionData).name,
+            params: args.actionParams,
+          })),
+        };
+        await args.denops.dispatcher.start(options);
       }
       return ActionFlags.None;
     },
