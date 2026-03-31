@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "erasableSyntaxOnly": true
+  },
+  "lock": false,
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check"
+  },
+  "workspace": [
+    "./denops/@ddu-kinds/source",
+    "./denops/@ddu-sources/source"
+  ]
+}

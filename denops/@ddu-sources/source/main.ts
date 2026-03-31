@@ -1,13 +1,13 @@
-import { Denops } from "jsr:@denops/std@^7.4.0";
+import type { Denops } from "@denops/std";
 import {
   BaseSource,
   type GatherArguments,
   type OnInitArguments,
-} from "jsr:@shougo/ddu-vim@^9.0.1/source";
-import type { Item } from "jsr:@shougo/ddu-vim@^9.0.1/types";
-import { basename } from "jsr:@std/path@^1.0.6/basename";
-import { dirname } from "jsr:@std/path@^1.0.6/dirname";
-import type { ActionData } from "../@ddu-kinds/source.ts";
+} from "@shougo/ddu-vim/source";
+import type { Item } from "@shougo/ddu-vim/types";
+import { basename } from "@std/path/basename";
+import { dirname } from "@std/path/dirname";
+import type { ActionData } from "../../@ddu-kinds/source/main.ts";
 
 type Params = Record<PropertyKey, never>;
 
