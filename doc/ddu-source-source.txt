@@ -3,7 +3,7 @@
 Author: Hibiki <mail@4513echo.dev>
 License: MIT License
 URL: https://github.com/4513ECHO/ddu-source-source
-Last change: 2023 Aug 23
+Last change: 2026 Apr 01
 
 ==============================================================================
 CONTENTS                                          *ddu-source-source-contents*
@@ -53,8 +53,8 @@ ACTIONS                                              *ddu-kind-source-actions*
 
                                               *ddu-kind-source-action-execute*
 execute
-	Execute the source. Action params are passed to the source directly as
-	|ddu-option-sourceParams|.
+	Start a new ddu with selected sources.
+	Action params are passed as |ddu-options| except |ddu-option-sources|.
 
 ==============================================================================
 ABOUT                                                *ddu-source-source-about*

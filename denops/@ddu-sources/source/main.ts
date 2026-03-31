@@ -16,12 +16,10 @@ export class Source extends BaseSource<Params, ActionData> {
   #sourceFiles: string[] = [];
 
   override async onInit(args: OnInitArguments<Params>): Promise<void> {
-    // Get sources with pattern: denops/@ddu-sources/*.ts
     const sourceFiles = await args.denops.eval(
       "globpath(&runtimepath, 'denops/@ddu-sources/*.ts', v:true, v:true)",
     ) as string[];
 
-    // Get sources with pattern: denops/@ddu-sources/*/main.ts
     const mainSourceFiles = await args.denops.eval(
       "globpath(&runtimepath, 'denops/@ddu-sources/*/main.ts', v:true, v:true)",
     ) as string[];
