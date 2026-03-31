@@ -1,0 +1,14 @@
+{
+  "name": "@shougo/ddu-kind-source",
+  "exports": {
+    ".": "./main.ts"
+  },
+  "publish": {
+    "include": [
+      "**/*.ts"
+    ]
+  },
+  "imports": {
+    "@shougo/ddu-vim": "jsr:@shougo/ddu-vim@^11.0.0"
+  }
+}

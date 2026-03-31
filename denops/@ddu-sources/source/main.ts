@@ -1,13 +1,15 @@
-import { Denops } from "jsr:@denops/std@^7.4.0";
+import { Denops } from "@denops/std";
+import * as fn from "@denops/std/function";
+import * as op from "@denops/std/option";
 import {
   BaseSource,
   type GatherArguments,
   type OnInitArguments,
-} from "jsr:@shougo/ddu-vim@^9.0.1/source";
-import type { Item } from "jsr:@shougo/ddu-vim@^9.0.1/types";
-import { basename } from "jsr:@std/path@^1.0.6/basename";
-import { dirname } from "jsr:@std/path@^1.0.6/dirname";
-import type { ActionData } from "../@ddu-kinds/source.ts";
+} from "@shougo/ddu-vim/source";
+import type { Item } from "@shougo/ddu-vim/types";
+import { basename } from "@std/path/basename";
+import { dirname } from "@std/path/dirname";
+import type { ActionData } from "../../@ddu-kinds/source/main.ts";
 
 type Params = Record<PropertyKey, never>;
 
@@ -17,14 +19,23 @@ export class Source extends BaseSource<Params, ActionData> {
 
   override async onInit(args: OnInitArguments<Params>): Promise<void> {
     // Get sources with pattern: denops/@ddu-sources/*.ts
-    const sourceFiles = await args.denops.eval(
-      "globpath(&runtimepath, 'denops/@ddu-sources/*.ts', v:true, v:true)",
-    ) as string[];
+    const runtimepath = await op.runtimepath.getGlobal(args.denops);
+    const sourceFiles = await fn.globpath(
+      args.denops,
+      runtimepath,
+      "denops/@ddu-sources/*.ts",
+      1,
+      1,
+    ) as unknown as string[];
 
     // Get sources with pattern: denops/@ddu-sources/*/main.ts
-    const mainSourceFiles = await args.denops.eval(
-      "globpath(&runtimepath, 'denops/@ddu-sources/*/main.ts', v:true, v:true)",
-    ) as string[];
+    const mainSourceFiles = await fn.globpath(
+      args.denops,
+      runtimepath,
+      "denops/@ddu-sources/*/main.ts",
+      1,
+      1,
+    ) as unknown as string[];
 
     this.#sourceFiles = [
       ...sourceFiles.map((file) => basename(file, ".ts")),
